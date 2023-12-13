@@ -1,6 +1,5 @@
 const mongoose=require('mongoose');
 
-
 const UserSchema = new mongoose.Schema(
     {
         name: {
@@ -19,6 +18,22 @@ const UserSchema = new mongoose.Schema(
             type: String,
             required: [true, "password is required"],
             min: 5,
+        },
+        isAdmin: {
+            type: Boolean,
+            default: false,
+        },
+        isDoctor: {
+            type: Boolean,
+            default: false,
+        },
+        notification: {
+            type: Array,
+            default: [],
+        },
+        seenNotification: {
+            type: Array,
+            default: [],
         },
     },
     { timestamps: true, versionKey:false},

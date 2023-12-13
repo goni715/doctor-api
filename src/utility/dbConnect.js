@@ -1,8 +1,8 @@
-
 require('dotenv').config();
 const mongoose = require("mongoose");
 
 const dbConnect = () => {
+    mongoose.set('strictQuery', false);
 
     let uri = process.env.MONGO_URI;
     //let option = {user:process.env.MONGO_USER, pass:process.env.MONGO_PASS,autoIndex:true};
