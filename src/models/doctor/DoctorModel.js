@@ -24,6 +24,7 @@ const DoctorSchema = new mongoose.Schema(
         },
         website: {
             type: String,
+            default: "https://osman-goni.netlify.app/"
         },
         address: {
             type: String,
