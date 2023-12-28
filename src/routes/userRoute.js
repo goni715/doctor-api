@@ -15,10 +15,12 @@ router.post('/login',UserController.Login);
 router.post("/apply-doctor", AuthVerifyMiddleware, UserController.ApplyDoctor);
 
 router.get("/get-all-user", AuthVerifyMiddleware, UserController.GetAllUser);
-// router.delete('/delete-todo/:id',TodoController.DeleteTodo);
-// router.patch('/update-todo/:id',TodoController.UpdateTodo);
-// router.get('/get-todo/:id',TodoController.GetTodo);
-//
+router.get("/get-my-profile", AuthVerifyMiddleware, UserController.GetMyProfile);
+
+
+router.put("/get-all-notification", AuthVerifyMiddleware, UserController.GetAllNotification);
+router.put("/delete-all-notification", AuthVerifyMiddleware, UserController.DeleteAllNotification);
+
 
 
 
