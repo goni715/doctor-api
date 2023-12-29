@@ -1,0 +1,13 @@
+const mongoose = require("mongoose");
+const GetDoctorsRequestService = async (req, res, DoctorModel) => {
+   try{
+      const ObjectId = mongoose.Types.ObjectId;
+      let doctors = await DoctorModel.aggregate([{$match: {status: "pending"}}]);
+      res.status(200).json({message:"success", data:doctors});
+   }
+   catch(error){
+      res.status(500).json({message:"error", data:error.toString()})
+   }
+}
+
+module.exports = GetDoctorsRequestService

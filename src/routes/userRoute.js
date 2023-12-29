@@ -13,8 +13,6 @@ router.post('/login',UserController.Login);
 
 //APply Doctor || POST
 router.post("/apply-doctor", AuthVerifyMiddleware, UserController.ApplyDoctor);
-
-router.get("/get-all-user", AuthVerifyMiddleware, UserController.GetAllUser);
 router.get("/get-my-profile", AuthVerifyMiddleware, UserController.GetMyProfile);
 
 

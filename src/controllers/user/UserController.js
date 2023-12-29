@@ -20,10 +20,6 @@ exports.ApplyDoctor = async (req, res) =>{
     await ApplyDoctorService(req,res,UserModel, DoctorModel);
 }
 
-exports.GetAllUser=async(req,res)=>{
-    const projection = {$project: {_id:1, email:1, name:1, isDoctor:1}}
-    await GetAllService(req,res,UserModel, projection)
-}
 
 exports.GetMyProfile=async(req,res)=>{
     await GetMyProfileService(req,res,UserModel);
