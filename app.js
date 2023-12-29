@@ -3,7 +3,6 @@ require('dotenv').config();
 const express = require('express');
 const app = new express();
 
-const todoRouter = require('./src/routes/TodoRoute');
 const userRouter = require('./src/routes/userRoute');
 
 
@@ -53,7 +52,6 @@ dbConnect();
 
 //Managing Back-end Routing// Back-end Routing Implementation
 //app.use('/api/v1', router);
-app.use('/api/todo', todoRouter);
 app.use('/api/user', userRouter);
 
 

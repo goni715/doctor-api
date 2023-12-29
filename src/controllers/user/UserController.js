@@ -4,10 +4,9 @@ const DoctorModel = require("../../models/doctor/DoctorModel");
 const UserLoginService = require("../../services/user/UserLoginService");
 const ApplyDoctorService = require("../../services/doctor/ApplyDoctorService");
 const GetAllService = require("../../services/common/GetAllService");
-const TodoModel = require("../../models/TodoModel");
-const GetAllNotificationService = require("../../services/notification/GetAllNotificationService");
+const MarkAllReadNotificationService = require("../../services/notification/MarkAllReadNotificationService");
 const GetMyProfileService = require("../../services/user/GetMyProfileService");
-const DeleteAllNotificationService = require("../../services/notification/DeleteAllNotificationService");
+const DeleteAllNotificationService = require("../../services/notification/DeleteAllReadNotificationService");
 
 exports.Registration = async (req, res) =>{
     await UserCreateService(req,res,UserModel);
@@ -31,10 +30,10 @@ exports.GetMyProfile=async(req,res)=>{
 }
 
 
-exports.GetAllNotification=async(req,res)=>{
-    await GetAllNotificationService(req,res,UserModel);
+exports.MarkAllReadNotification=async(req,res)=>{
+    await MarkAllReadNotificationService(req,res,UserModel);
 }
 
-exports.DeleteAllNotification=async(req,res)=>{
+exports.DeleteAllReadNotification=async(req,res)=>{
     await DeleteAllNotificationService(req,res,UserModel);
 }

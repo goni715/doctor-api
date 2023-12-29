@@ -18,8 +18,8 @@ router.get("/get-all-user", AuthVerifyMiddleware, UserController.GetAllUser);
 router.get("/get-my-profile", AuthVerifyMiddleware, UserController.GetMyProfile);
 
 
-router.put("/get-all-notification", AuthVerifyMiddleware, UserController.GetAllNotification);
-router.put("/delete-all-notification", AuthVerifyMiddleware, UserController.DeleteAllNotification);
+router.put("/mark-all-read-notification", AuthVerifyMiddleware, UserController.MarkAllReadNotification);
+router.put("/delete-all-read-notification", AuthVerifyMiddleware, UserController.DeleteAllReadNotification);
 
 
 

@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const GetAllNotificationService = async (req, res, UserModel) => {
+const MarkAllReadNotificationService = async (req, res, UserModel) => {
     try{
         let id=req.headers.id;
         const ObjectId = mongoose.Types.ObjectId;
@@ -24,4 +24,4 @@ const GetAllNotificationService = async (req, res, UserModel) => {
 
 }
 
-module.exports= GetAllNotificationService
+module.exports= MarkAllReadNotificationService
