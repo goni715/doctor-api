@@ -7,6 +7,7 @@ const GetAllService = require("../../services/common/GetAllService");
 const MarkAllReadNotificationService = require("../../services/notification/MarkAllReadNotificationService");
 const GetMyProfileService = require("../../services/user/GetMyProfileService");
 const DeleteAllNotificationService = require("../../services/notification/DeleteAllReadNotificationService");
+const GetDoctorProfileService = require("../../services/doctor/GetDoctorProfileService");
 
 exports.Registration = async (req, res) =>{
     await UserCreateService(req,res,UserModel);
@@ -25,6 +26,9 @@ exports.GetMyProfile=async(req,res)=>{
     await GetMyProfileService(req,res,UserModel);
 }
 
+exports.GetDoctorProfile=async(req,res)=>{
+    await GetDoctorProfileService(req,res,DoctorModel);
+}
 
 exports.MarkAllReadNotification=async(req,res)=>{
     await MarkAllReadNotificationService(req,res,UserModel);
