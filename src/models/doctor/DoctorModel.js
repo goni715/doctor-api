@@ -9,10 +9,16 @@ const DoctorSchema = new mongoose.Schema(
         firstName: {
             type: String,
             required: [true, "first name is required"],
+            minLength:3,
+            maxLength:31,
+            trim:true
         },
         lastName: {
             type: String,
             required: [true, "last name is required"],
+            minLength:3,
+            maxLength:31,
+            trim:true
         },
         phone: {
             type: String,
@@ -45,6 +51,7 @@ const DoctorSchema = new mongoose.Schema(
         status: {
             type: String,
             default: "pending",
+            enum:["pending", "approved"]
         },
         timings: {
             type: Object,

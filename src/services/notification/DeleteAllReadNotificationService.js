@@ -1,9 +1,9 @@
 const mongoose = require("mongoose");
 const DeleteAllReadNotificationService = async (req, res, UserModel) => {
     try{
-        let id=req.headers.id;
+        let loginUserId=req.headers.id;
         const ObjectId = mongoose.Types.ObjectId;
-        let QueryObject = {_id: new ObjectId(id)};
+        let QueryObject = {_id: new ObjectId(loginUserId)};
 
         let updatedUser = await UserModel.updateOne(
             QueryObject,

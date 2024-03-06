@@ -1,9 +1,9 @@
 const mongoose = require("mongoose");
-const GetDoctorProfileService = async (req, res, DoctorModel) => {
+const GetDoctorByUserIdService = async (req, res, DoctorModel) => {
     try{
-        let id = req.headers.id;
+        let loginUserId = req.headers.id;
         const ObjectId = mongoose.Types.ObjectId;
-        let QueryObject = {userId: new ObjectId(id), status: "approved"};
+        let QueryObject = {userId: new ObjectId(loginUserId), status: "approved"};
 
         let user = await DoctorModel.aggregate([
             {$match: QueryObject}
@@ -16,4 +16,4 @@ const GetDoctorProfileService = async (req, res, DoctorModel) => {
     }
 }
 
-module.exports = GetDoctorProfileService
+module.exports = GetDoctorByUserIdService

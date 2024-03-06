@@ -8,11 +8,11 @@ const UpdateService= async (req, res,DataModel) => {
         let PostBody=req.body;
 
         let Update = await DataModel.updateOne(UpdateQueryObject,PostBody);
-        res.status(200).json({status: "success", data: Update});
+        res.status(200).json({message: "success", data: Update});
 
     }
     catch (error) {
-        res.status(500).json({status: "fail", data: error.toString()});
+        res.status(500).json({message: "error", data: error.toString()});
     }
 }
 module.exports=UpdateService

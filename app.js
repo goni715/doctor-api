@@ -4,7 +4,8 @@ const express = require('express');
 const app = new express();
 
 const userRouter = require('./src/routes/userRoute');
-const adminRouter = require('./src/routes/adminRoute');
+const appointmentRouter = require('./src/routes/appointmentRoute');
+const doctorRouter = require('./src/routes/doctorRoute');
 
 
 const bodyParser = require('body-parser');
@@ -54,7 +55,8 @@ dbConnect();
 //Managing Back-end Routing// Back-end Routing Implementation
 //app.use('/api/v1', router);
 app.use('/api/user', userRouter);
-app.use('/api/admin', adminRouter);
+app.use('/api/appointment', appointmentRouter);
+app.use('/api/doctor', doctorRouter);
 
 
 

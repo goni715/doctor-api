@@ -18,19 +18,19 @@ const io = socketIo(server,{
 
 io.on("connection", (socket)=>{
 
-    console.log("connected"+socket.id)
+    // console.log("connected"+socket.id)
 
     //confirm-request
     socket.on("send-notification", (data)=>{
         if(data){
-            console.log(data);
+            //console.log(data);
             io.emit("receive-notification", socket.id)
         }
 
     })
 
     socket.on('disconnect', () => {
-        console.log('disconnected'+socket.id)
+        // console.log('disconnected'+socket.id)
     })
 
 })

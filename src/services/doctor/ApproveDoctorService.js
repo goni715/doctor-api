@@ -9,45 +9,51 @@ const ApproveDoctorService = async (req, res, DoctorModel, UserModel) => {
        // Begin Transaction
        await session.startTransaction();
 
-       const { doctorId, status } = req.body;
+       const {userId, doctorId } = req.body;
        const ObjectId = mongoose.Types.ObjectId;
        let UpdateQueryObject = {_id: new ObjectId(doctorId)};
 
-       //data change
-       let doctorUpdated = await DoctorModel.updateOne(UpdateQueryObject,{status:status}, {session});
 
-       //data get
-       let doctor = await DoctorModel.aggregate([{$match: {_id: new ObjectId(doctorId)}}]);
-       let user = await UserModel.aggregate([{$match: {_id: new ObjectId(doctor[0].userId)}}]);
+       const user = await UserModel.findOne({_id: new ObjectId(userId), isDoctor:false});
 
-       const notification = user[0]['notification'];
-       const newNotification ={
-           type: "doctor-account-request-updated",
-           message: `Your Doctor Account Request Has ${status} `,
-           onClickPath: "/notification",
-       };
+       //if user is not already a doctor
+       if(user){
+           //data change
+           let doctorUpdated = await DoctorModel.updateOne(UpdateQueryObject,{status:"approved"}, {session});
+
+           const notification = user['notification'];
+           const newNotification ={
+               type: "doctor-account-request-updated",
+               message: `Your Doctor Account Request Has approved `,
+               onClickPath: "/notification",
+           };
 
 
-       //data change
-       let updatedUser = await UserModel.updateOne(
-           {_id: new ObjectId(doctor[0].userId)},
-           {
-               notification:[newNotification, ...notification],
-               isDoctor:true
-           },
-           {session}
-       );
+           //data change
+           let updatedUser = await UserModel.updateOne(
+               {_id: new ObjectId(userId)},
+               {
+                   notification:[newNotification, ...notification],
+                   isDoctor:true
+               },
+               {session}
+           );
+
+           res.status(200).json({message:"success", data:updatedUser});
+       }
+       else{
+           res.status(409).json({message:"success", data:"This user is already a doctor"});
+       }
 
        // Transaction Success
        await session.commitTransaction();
        await session.endSession();
 
-      res.status(200).json({message:"success", data:updatedUser});
    }
    catch(error){
        // Roll Back Transaction if Fail
        await session.abortTransaction();
-       session.endSession();
+       await session.endSession();
        res.status(500).json({message:"error", data:error.toString()})
    }
 }
